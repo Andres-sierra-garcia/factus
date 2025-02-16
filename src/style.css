@@ -1,0 +1,21 @@
+body{
+  height: 100vh;
+
+}
+
+#app{
+  height: 100vh;
+  background-image: url("../src/assets/background_login.jpg");
+}
+
+*{
+  margin: 0%;
+  padding: 0%;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
