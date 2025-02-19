@@ -14,12 +14,9 @@ import { getData } from '../services/apiclient';
 
 const columns = ref([
   {name: "number",align: "center", label:"Numero", field:"number", sortable: true},
-  { name: "api_client_name", align: "center", label: "email ", field: "api_client_name", sortable: true },
+  { name: "api_client_name", align: "center", label: "cliente", field: "api_client_name", sortable: true },
   { name: "reference_code", align: "center", label: "Código de Referencia", field: "reference_code", sortable: true },
   { name: "identification", align: "center", label: "Identificación", field: "identification", sortable: true },
-  { name: "graphic_representation_name", align: "center", label: "Representación Gráfica", field: "graphic_representation_name", sortable: true },
-  { name: "company", align: "center", label: "Empresa", field: "company", sortable: true },
-  { name: "trade_name", align: "center", label: "Nombre Comercial", field: "trade_name", sortable: true },
   { name: "names", align: "center", label: "Nombre", field: "names", sortable: true },
   { name: "email", align: "center", label: "Correo Electrónico", field: "email", sortable: true },
   { name: "total", align: "center", label: "Total", field: "total", sortable: true }

@@ -5,7 +5,7 @@ body{
 
 #app{
   height: 100vh;
-  background-image: url("../src/assets/background_login.jpg");
+  background-color: #0077b6;
 }
 
 *{

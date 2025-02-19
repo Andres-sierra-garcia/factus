@@ -12,7 +12,7 @@
         </q-header>
 
         <!--menu lateral-->
-        <q-drawer v-model="drawer" show-if-above @click-outside="drawer = !drawer">
+        <q-drawer v-model="drawer" show-if-above @click-outside="drawer = false"  @mouseenter="drawer = true">
             <q-list>
                 <q-item clickable v-ripple to="/home">
                     <q-item-section avatar>
@@ -29,6 +29,15 @@
                     </q-item-section>
                     <q-item-section>
                         <q-item-label>Facturas</q-item-label>
+                    </q-item-section>
+                </q-item>
+
+                <q-item clickable v-ripper to="/crearFactura">
+                    <q-item-section avatar>
+                        <q-icon name="create"></q-icon>
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Crear Factura</q-item-label>
                     </q-item-section>
                 </q-item>
 

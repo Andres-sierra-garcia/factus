@@ -1,8 +1,6 @@
 <template>
  <div class="containerLogin">
-        <div class="image">
-            <p>Accede para gestionar y crear tus facturas de forma rápida y segura. </p>
-        </div>
+        <div class="image"></div>
         <div class="form">
             <h3>Iniciar Sesion</h3>
             <p>Accede a tu cuenta para disfrutar de todas nuestras funciones.</p>
@@ -28,10 +26,8 @@
 <script setup>
 import { ref } from 'vue';
 import { postData } from '../services/apiclient';
-import { useRouter } from 'vue-router';
 import { useStore } from '../stores/tienda';
 import { router } from '../routes/routes';
-import axios from 'axios';
 const store = useStore();
 
 //credenciales
@@ -56,7 +52,7 @@ async function login (){
             router.replace("/home")
         }
         else{
-            console.log("algo salio mal" , response);
+                    console.log("algo salio mal" , response);
         }
 
     } catch (error) {
