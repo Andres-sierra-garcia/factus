@@ -9,11 +9,12 @@ export async function getData(url) {
         console.error('error en la peticion GET', error);
         throw error;
     }
-}
+} 
 
-export async function postData(url, data){
+export async function postData(url, data, options){
     try {
         console.log(data)
+        console.log("options" , options);
         const response = await apiClient.post(url, data);
         return response.data;
     } catch (error){

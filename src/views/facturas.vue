@@ -6,11 +6,11 @@
       </q-table>
     </div>
   </q-page>
-</template>
+</template> 
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { getData } from '../services/apiclient';
+import { getDataFactus } from '../services/factus.js';
 
 const columns = ref([
   {name: "number",align: "center", label:"Numero", field:"number", sortable: true},
@@ -26,12 +26,13 @@ const columns = ref([
 let rows = ref([])
 
 async function dataFacturas(){
+
 try {
-  const response = await getData("/v1/bills?filter[identification]&filter[names]&filter[number]&filter[prefix]&filter[reference_code]&filter[status]")
+  const response = await getDataFactus("https://api-sandbox.factus.com.co/v1/bills?filter[identification]&filter[names]&filter[number]&filter[prefix]&filter[reference_code]&filter[status]")
   if(response.data){
     rows.value=response.data.data
-    console.log(response.data.data);
   }
+
 } catch (error) {
   console.log(error);
 }

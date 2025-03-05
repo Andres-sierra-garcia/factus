@@ -14,7 +14,7 @@
                 
             Iniciar Sesion
             </button> -->
-            <q-btn @click="login()" id="btnLoading"  color="secondary"  label="Iniciar sesion"  />
+            <q-btn @click="login()" id="btnLoading" :loading="loading"  color="secondary"  label="Iniciar sesion"  />
         </div>
     </div>
     
@@ -25,38 +25,33 @@
 
 <script setup>
 import { ref } from 'vue';
-import { postData } from '../services/apiclient';
 import { useStore } from '../stores/tienda';
 import { router } from '../routes/routes';
 const store = useStore();
+import { postDataFactus } from '../services/factus.js';
+const loading = ref(false)
 
 //credenciales
 let email= ref("")
 let password = ref("")
 
-
 async function login (){
+    loading.value=true
     try {
-        const response = await postData("/oauth/token",{
+        const response = await postDataFactus("/oauth/token",{
             grant_type:"password",
             client_id:import.meta.env.VITE_CLIENT_ID,
             client_secret:import.meta.env.VITE_CLIENT_SECRET,
             username:email.value,
             password:password.value
         })
-
-        const token= response.access_token
-        if(token){
-            //tienda
             store.set_Token_RefreshToken(response.access_token, response.refresh_token)
             router.replace("/home")
-        }
-        else{
-                    console.log("algo salio mal" , response);
-        }
-
     } catch (error) {
         console.log(error);
+    }
+    finally{
+        loading.value=false
     }
 }
 
