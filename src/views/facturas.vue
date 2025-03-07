@@ -10,8 +10,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { getDataFactus } from '../services/factus.js';
-
+import { getData } from '../services/apiclient.js';
 const columns = ref([
   {name: "number",align: "center", label:"Numero", field:"number", sortable: true},
   { name: "api_client_name", align: "center", label: "cliente", field: "api_client_name", sortable: true },
@@ -26,13 +25,12 @@ const columns = ref([
 let rows = ref([])
 
 async function dataFacturas(){
-
 try {
-  const response = await getDataFactus("https://api-sandbox.factus.com.co/v1/bills?filter[identification]&filter[names]&filter[number]&filter[prefix]&filter[reference_code]&filter[status]")
-  if(response.data){
-    rows.value=response.data.data
+  const response = await getData("/invoice/invoices")
+  if(response){
+    rows.value=response.invoices
   }
-
+  console.log("faturas backend",response);
 } catch (error) {
   console.log(error);
 }
