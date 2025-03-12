@@ -1,0 +1,46 @@
+.formCustomer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+    padding: 10px;
+    justify-content: space-between;
+    height: auto;
+}
+
+.inputCustomer {
+    width: 40%;
+    margin-bottom: 12px;
+  }
+  
+  .inputCustomer .q-field__control {
+    border-radius: 8px; /* Bordes redondeados */
+    border: 1px solid #ccc; /* Borde ligero */
+    padding: 10px; /* Espaciado interno */
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .inputCustomer .q-field__control:focus-within {
+    border-color: #1976d2; /* Cambia el borde al enfocar */
+    box-shadow: 0 0 5px rgba(25, 118, 210, 0.5);
+  }
+  
+  .inputCustomer .q-field__label {
+    font-weight: bold;
+    color: #555; /* Color del label */
+  }
+  
+  .inputCustomer .q-field__native {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .inputCustomer .q-field__bottom {
+    font-size: 12px;
+    color: #f44336; /* Color para mensajes de error */
+  }
+  
+  .inputCustomer .q-icon {
+    color: #1976d2; /* Color de iconos dentro del input */
+  }
+  

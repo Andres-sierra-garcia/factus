@@ -35,7 +35,11 @@
 
             <div class="q-pa-md">
                 <q-table flat bordered :rows="factura.items" :columns="columnsItems" row-key="name">
-                    <!--espacio para cuadrar los templates mas tarde-->
+                    <template v-slot:body-cell-quantity="props">
+                        <q-td :props="props">
+                            <q-input type="number" placeholder="cantidad" v-model="props.row.quantity"></q-input>
+                        </q-td>
+                    </template>
                 </q-table>
             </div>
             <q-btn @click="crearFactura()">crear factura</q-btn>
@@ -89,7 +93,8 @@ async function crearFactura(){
                 end_time:"23:59:59"
             },
             customer:toRaw(factura.value.customer),
-            items:factura.value.items.map((item)=> toRaw(item))
+            items:factura.value.items.map((item)=> toRaw(item)),
+            state:1
         })
 
         console.log("factura validada", response);

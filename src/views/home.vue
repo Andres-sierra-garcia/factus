@@ -4,7 +4,7 @@
             <q-toolbar>
                 <q-btn icon="menu" @click="drawer = !drawer"></q-btn>
                 <q-toolbar-title>
-                    Factus
+                    Factus-reto
                 </q-toolbar-title>
                 <q-space /> <!--esto empuje los elementos siguientes hacia la derecha-->
                 <q-btn icon="logout"  @click="CerrarSesion()">Cerrar Sesion</q-btn>
@@ -43,6 +43,8 @@
 
             </q-list>
         </q-drawer>
+
+
 
         <q-page-container>
             <router-view />
