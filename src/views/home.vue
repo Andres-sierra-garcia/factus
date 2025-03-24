@@ -1,18 +1,18 @@
 <template>
     <q-layout view="hHh lpR fFf">
-        <q-header style="">
+        <q-header>
             <q-toolbar>
                 <q-btn icon="menu" @click="drawer = !drawer"></q-btn>
                 <q-toolbar-title>
-                    Factus
+                    Reto factus
                 </q-toolbar-title>
                 <q-space /> <!--esto empuje los elementos siguientes hacia la derecha-->
-                <q-btn icon="logout"  @click="CerrarSesion()">Cerrar Sesion</q-btn>
+                <q-btn icon="logout" @click="CerrarSesion()">Cerrar Sesion</q-btn>
             </q-toolbar>
         </q-header>
 
         <!--menu lateral-->
-        <q-drawer v-model="drawer" show-if-above @click-outside="drawer = false"  @mouseenter="drawer = true">
+        <q-drawer v-model="drawer" show-if-above @click-outside="drawer = false" @mouseenter="drawer = true">
             <q-list>
                 <q-item clickable v-ripple to="/home">
                     <q-item-section avatar>
@@ -23,14 +23,7 @@
                     </q-item-section>
                 </q-item>
 
-                <q-item clickable v-ripple to="/facturas">
-                    <q-item-section avatar>
-                        <q-icon name="receipt"></q-icon>
-                    </q-item-section>
-                    <q-item-section>
-                        <q-item-label>Facturas</q-item-label>
-                    </q-item-section>
-                </q-item>
+
 
                 <q-item clickable v-ripper to="/crearFactura">
                     <q-item-section avatar>
@@ -41,12 +34,31 @@
                     </q-item-section>
                 </q-item>
 
+                <q-item clickable v-ripper to="/usuarios">
+                    <q-item-section avatar>
+                        <q-icon name="person"></q-icon>
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>usuarios</q-item-label>
+                    </q-item-section>
+                </q-item>
+
+                <q-item clickable v-ripper to="/items">
+                    <q-item-section avatar>
+                        <q-icon name="apps"></q-icon>
+                    </q-item-section>
+                    <q-item-section>
+                        <q-item-label>Productos</q-item-label>
+                    </q-item-section>
+                </q-item>
+
             </q-list>
         </q-drawer>
 
         <q-page-container>
             <router-view />
         </q-page-container>
+        
     </q-layout>
 </template>
 
@@ -58,13 +70,14 @@ const router = useRouter()
 let drawer = ref(false)
 const $q = useQuasar();
 
-function CerrarSesion (){
+
+function CerrarSesion() {
     localStorage.removeItem("tienda")
     $q.notify({
-    type: 'positive',
-    message: 'Sesión cerrada correctamente',
-  });
-  router.push("/")
+        type: 'positive',
+        message: 'Sesión cerrada correctamente',
+    });
+    router.push("/")
 }
 
 </script>
