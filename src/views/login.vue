@@ -1,5 +1,7 @@
 <template>
- <div class="containerLogin">
+<q-layout class="c" >
+<q-page-container class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+    <div class="containerLogin">
         <div class="image"></div>
         <div class="form">
             <h3>Iniciar Sesion</h3>
@@ -17,14 +19,12 @@
             <q-btn @click="login()" id="btnLoading" :loading="loading"  color="secondary"  label="Iniciar sesion"  />
         </div>
     </div>
-    
-      
-
-
+</q-page-container>
+</q-layout>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useStore } from '../stores/tienda';
 import { router } from '../routes/routes';
 const store = useStore();
@@ -45,7 +45,8 @@ async function login (){
             username:email.value,
             password:password.value
         })
-            store.set_Token_RefreshToken(response.access_token, response.refresh_token)
+            store.set_Token_RefreshToken(response.access_token, response.refresh_token);
+            store.setName(email.value)
             router.replace("/home")
     } catch (error) {
         console.log(error);
@@ -55,11 +56,16 @@ async function login (){
     }
 }
 
+function fillOut (){
+    email.value = "sandbox@factus.com.co";
+    password.value = "sandbox2024%";
+
+}
 
 
-
+onMounted(()=>{
+    fillOut()
+})
 
 </script>
-
-
-<style >@import "../styles/login.css"</style>
+<style scoped>@import "../styles/login.css"</style>

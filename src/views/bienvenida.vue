@@ -1,6 +1,7 @@
 <template>
-    <q-page>
-        <h1>bienvenido</h1>
+    <q-page class="q-pa-md">
+        <h1>bienvenido, <span class="username">{{ username }}</span></h1>
+        <p class="text-body1 text-grey-9 text-center">Simplifica y agiliza tu facturación con nuestra plataforma. Genera, gestiona y consulta tus facturas de manera rápida y segura. ¡Comienza ahora y lleva el control de tus transacciones sin complicaciones!</p>
         <q-btn @click="showModal = true" style="background-color: white; margin-left: 5%;"> registrar cliente</q-btn>
         <q-dialog v-model="showModal" class="bg-secundary ">
             <q-card style="width: 70%;">
@@ -29,6 +30,10 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useStore } from '../stores/tienda';
+
+const store = useStore()
+const username = store.username
 
 let showModal = ref(false)
 const customer = ref({})

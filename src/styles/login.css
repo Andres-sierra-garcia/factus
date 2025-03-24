@@ -1,21 +1,18 @@
 .containerLogin {
+    align-self: center;
+    justify-self: center;
     display: flex;
     width: 80%;
     height: 500px;
-    margin: 5%;
     box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--secundary-color);
     border-radius: 5px;
     flex-direction: row;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--secundary-color);
     font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 
-
-footer {
-    width: 100%;
-}
 
 
 .iconos {
@@ -33,7 +30,6 @@ footer {
     background-size: cover;
     background-position: center;
     width: 45%;
-    height: 500px;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
@@ -58,7 +54,7 @@ footer {
 }
 
 .form .q-btn {
-    background-color: #adb5bd !important;
+    background-color: var(--primary-color) !important;
     color: black !important;
     box-shadow: 0 0 10px 0 rgba(255, 253, 253, 0.897);
 

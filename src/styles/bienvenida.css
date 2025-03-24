@@ -44,3 +44,6 @@
     color: #1976d2; /* Color de iconos dentro del input */
   }
   
+  .username{
+    color: var(--third-color);
+  }

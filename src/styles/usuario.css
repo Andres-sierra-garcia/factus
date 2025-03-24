@@ -1,0 +1,11 @@
+.q-form{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.q-input,
+.q-select{
+    width: 270px;
+}

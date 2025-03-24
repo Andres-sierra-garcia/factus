@@ -11,10 +11,9 @@ export async function getData(url) {
     }
 } 
 
-export async function postData(url, data, options){
+export async function postData(url, data,){
     try {
         console.log(data)
-        console.log("options" , options);
         const response = await apiClient.post(url, data);
         return response.data;
     } catch (error){

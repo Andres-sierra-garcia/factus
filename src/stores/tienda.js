@@ -5,6 +5,7 @@ export const useStore = defineStore ("tienda",()=>{
 
 const token = ref("");
 const refreshToken = ref("")
+const username = ref("")
 
     function set_Token_RefreshToken (Token,RefreshToken){
         if(token){
@@ -17,11 +18,18 @@ const refreshToken = ref("")
     }
 
 
+    function setName (name){
+        username.value = name
+    }
+
+
 
     return{
         token,
         refreshToken,
-        set_Token_RefreshToken
+        set_Token_RefreshToken,
+        setName,
+        username
     }
 
 },{
