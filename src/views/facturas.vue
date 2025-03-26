@@ -252,8 +252,6 @@ async function downloadPdf(number) {
     const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
     const byteArray = new Uint8Array(byteNumbers);
     const fileBlob = new Blob([byteArray], { type: "application/pdf" });
-    const pdfBuffer = Buffer.from(fileBlob);
-    pdf.value = pdfBuffer;
 
     const fileUrl = URL.createObjectURL(fileBlob);
     const a = document.createElement("a");
