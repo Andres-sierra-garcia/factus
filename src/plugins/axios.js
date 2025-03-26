@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-/*     baseURL: "https://backend-factus.onrender.com/factus", */
-    baseURL:"http://localhost:3999/factus"
+    baseURL: "https://backend-factus.onrender.com/factus",
+   /*  baseURL:"http://localhost:3999/factus" */
 });
 
 apiClient.interceptors.request.use(
