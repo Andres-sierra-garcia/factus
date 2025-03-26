@@ -31,7 +31,7 @@
           <q-card-section class="optionsInvoice ">
             <q-btn icon="download" @click="downloadPdf(invoice.number)">Descargar pdf</q-btn>
             <q-btn icon="share" @click="share=true">Compartir</q-btn>
-            <q-btn icon="email">Enviar por correo</q-btn>
+            <q-btn icon="email" @click="showSendEmail = true">Enviar por correo</q-btn>
             <q-btn icon="receipt" :href="invoice.url" target="_blank">Ver factura</q-btn>
           </q-card-section>
 
@@ -160,6 +160,7 @@
 
         </q-card>
       </q-dialog>
+
       <q-dialog v-model="share">
         <q-card class="q-pa-md">
           <h5>Digita el numero telefonico</h5>
@@ -168,7 +169,16 @@
             <q-btn icon="send" @click="shareWhatsapp()"></q-btn>
           </q-card-section>
         </q-card>
-      
+      </q-dialog>
+
+      <q-dialog v-model="showSendEmail">
+        <q-card class="q-pa-md">
+          <h5>Por favor escribe el correo del destinatario</h5>
+          <q-card-section class="flex items-center">
+            <q-input type="text" v-model="recipientEmail" filled></q-input>
+            <q-btn icon="send" @click="email(invoice.number)"></q-btn>
+          </q-card-section>
+        </q-card>
       </q-dialog>
     </div>
   </q-page>
@@ -176,18 +186,22 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { getData } from '../services/apiclient.js';
+import { getData, postData } from '../services/apiclient.js';
 import { getDataFactus } from '../services/factus.js';
 import { NumerosALetras } from "numero-a-letras";
 import { useQuasar } from 'quasar';
 
 
+
 const $q = useQuasar()
 const phoneLink = ref(null)
 const share = ref(false)
+const showSendEmail = ref(false)
+const recipientEmail = ref(null)
 let dialog = ref(false)
 let maximizedToggle = ref(true)
 let invoice = ({})
+
 const invoiceColumns = ref([
   { name: "name", align: "center", field: "names", label: "Nombre" },
   { name: "address", align: "center", field: "address", label: "Direccion" },
@@ -238,6 +252,8 @@ async function downloadPdf(number) {
     const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
     const byteArray = new Uint8Array(byteNumbers);
     const fileBlob = new Blob([byteArray], { type: "application/pdf" });
+    const pdfBuffer = Buffer.from(fileBlob);
+    pdf.value = pdfBuffer;
 
     const fileUrl = URL.createObjectURL(fileBlob);
     const a = document.createElement("a");
@@ -251,7 +267,27 @@ async function downloadPdf(number) {
   } catch (error) {
     console.error("Error al descargar el PDF:", error);
   }
+}
 
+async function email(number) {
+  try {
+    const response = await getDataFactus("/v1/bills/download-pdf/" + number)
+    const {pdf_base_64_encoded } = response.data
+    const send = await postData("/email/email",{
+      to:recipientEmail.value,
+      subject:"Hola aqui esta tu factura 😁",
+      body:"Este es el pdf que contiene todos los datos referentes a tu factura",
+      pdf:pdf_base_64_encoded
+    })
+if(send){
+  console.log(send.message);
+  showDefault("Correo enviado" , "green")
+}
+  } catch (error) {
+    console.error("Error al obtener el PDF:", error);
+    
+  }
+  
 }
 
 function shareWhatsapp (){
